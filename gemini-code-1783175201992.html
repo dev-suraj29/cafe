@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tealogy Cafe | Premium Brews & Cozy Experiences</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: linear-gradient(180deg, #eae3d8 0%, #dfd5c6 30%, #d4c7b4 60%, #c4b6a1 100%);
+            color: #2c1a11;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+        .serif-font {
+            font-family: 'Playfair Display', serif;
+        }
+        /* Glassmorphism components */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.35);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+        .glass-input {
+            background: rgba(255, 255, 255, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            color: #2c1a11;
+        }
+        .glass-input:focus {
+            background: rgba(255, 255, 255, 0.45);
+            outline: none;
+            border-color: #4a2c1b;
+        }
+        /* Scroll Reveal Core Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1.2s cubic-bezier(0.215, 0.610, 0.355, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* Continuous ambient animations */
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-12px) rotate(3deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+        .floating-element {
+            animation: float 7s ease-in-out infinite;
+        }
+        /* Image fade transition for showcase */
+        .fade-img {
+            transition: opacity 0.4s ease-in-out;
+        }
+        /* Custom Scrollbars */
+        ::-webkit-scrollbar {
+            width: 10px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #4a2c1b;
+            border-radius: 10px;
+        }
+        /* Hide scrollbar for clean slider views but keep functionality */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="min-h-screen selection:bg-[#4a2c1b] selection:text-white">
+
+    <!-- OVERALL WRAPPER (Preserving layout guidelines from image_9ea66c.jpg) -->
+    <div class="max-w-[1440px] mx-auto px-8 lg:px-24 py-6 relative">
+
+        <!-- HEADER & NAVIGATION -->
+        <header class="flex justify-between items-center mb-16 reveal active z-50 relative">
+            <div class="flex flex-col">
+                <span class="text-2xl font-bold tracking-tight text-[#3d2516]">Tealogy <i class="fa-solid fa-mug-hot text-lg ml-1 text-amber-900"></i></span>
+                <span class="text-[10px] tracking-wider uppercase text-[#705a4e] font-semibold">Wake up to something special</span>
+            </div>
+            <nav class="hidden md:flex items-center gap-10 text-sm font-medium text-[#5c4638]">
+                <a href="#" class="text-[#2c1a11] font-bold border-b-2 border-[#2c1a11] pb-1">Home</a>
+                <a href="#menu" class="hover:text-[#2c1a11] transition">Menu</a>
+                <a href="#about" class="hover:text-[#2c1a11] transition">Our Story</a>
+                <a href="#amenities" class="hover:text-[#2c1a11] transition">Experience</a>
+                <a href="#testimonials" class="hover:text-[#2c1a11] transition">Reviews</a>
+                <a href="#reserve" class="bg-[#2c1a11] text-[#f7f4ef] px-6 py-2 rounded-full text-xs font-semibold tracking-wide hover:bg-[#42291b] transition shadow-md">Book a Table</a>
+            </nav>
+        </header>
+
+        <!-- SECTION 1: HERO CONTAINER WITH DYNAMIC INTERACTIVE IMAGES -->
+        <section class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center mb-28 reveal">
+            <div class="lg:col-span-6 space-y-6">
+                <h1 class="text-6xl lg:text-7xl font-bold text-[#2c1a11] leading-none serif-font">
+                    Coffee & Tea <br> <span class="text-amber-900">The Best</span> For You
+                </h1>
+                <p class="text-sm text-[#614e43] max-w-md leading-relaxed">
+                    Welcome to Tealogy, where every leaf is selected by hand and every espresso shot pulled beautifully. Step away from the rush and discover your perfect daily ritual.
+                </p>
+                <div>
+                    <a href="#menu" class="inline-block bg-[#2c1a11] text-[#f7f4ef] px-8 py-3.5 rounded-full text-sm font-medium hover:bg-[#42291b] transition shadow-lg">
+                        Explore Full Menu
+                    </a>
+                </div>
+                
+                <!-- Premium Dynamic Icon Controls -->
+                <div class="flex gap-4 pt-2">
+                    <button onclick="changeHeroImage('coffee', this)" class="hero-tab w-12 h-12 rounded-full bg-white flex items-center justify-center border-2 border-[#4a2c1b] shadow-md transition-all duration-300 transform scale-105">
+                        <i class="fa-solid fa-mug-saucer text-[#2c1a11] text-base"></i>
+                    </button>
+                    <button onclick="changeHeroImage('tea', this)" class="hero-tab w-12 h-12 rounded-full bg-white/40 flex items-center justify-center border border-white/20 shadow-sm hover:bg-white/60 transition-all duration-300">
+                        <i class="fa-solid fa-leaf text-[#705a4e] text-base"></i>
+                    </button>
+                    <button onclick="changeHeroImage('cookie', this)" class="hero-tab w-12 h-12 rounded-full bg-white/40 flex items-center justify-center border border-white/20 shadow-sm hover:bg-white/60 transition-all duration-300">
+                        <i class="fa-solid fa-cookie text-[#705a4e] text-base"></i>
+                    </button>
+                    <button onclick="changeHeroImage('breakfast', this)" class="hero-tab w-12 h-12 rounded-full bg-white/40 flex items-center justify-center border border-white/20 shadow-sm hover:bg-white/60 transition-all duration-300">
+                        <i class="fa-solid fa-seedling text-[#705a4e] text-base"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Hero Showcase Image Right (Fades on Icon Switch) -->
+            <div class="lg:col-span-6 flex justify-center lg:justify-end">
+                <div class="w-[360px] h-[360px] lg:w-[440px] lg:h-[440px] rounded-full overflow-hidden shadow-2xl border-[12px] border-white/30 floating-element bg-stone-200">
+                    <img id="hero-showcase" src="https://images.unsplash.com/photo-1541167760496-1628856ab772?q=80&w=600&auto=format&fit=crop" alt="Signature Coffee Art" class="w-full h-full object-cover fade-img opacity-100">
+                </div>
+            </div>
+        </section>
+
+
+        <!-- SECTION 2: POPULAR HOUSE FAVORITES (USER CURATION TEMPLATE) -->
+        <section class="mb-32">
+            <div class="text-center max-w-xl mx-auto mb-16 reveal">
+                <span class="text-xs uppercase tracking-widest font-bold text-amber-900 block mb-2">Handcrafted Curations</span>
+                <h2 class="text-4xl font-bold serif-font text-[#2c1a11]">Popular House Favorites</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-start reveal">
+                <!-- Card 1 -->
+                <div class="glass-card rounded-3xl p-6 shadow-xl flex flex-col items-center text-center pt-12 relative hover:-translate-y-2 transition-all duration-300">
+                    <div class="w-32 h-32 rounded-full overflow-hidden absolute -top-16 border-4 border-white/60 shadow-lg">
+                        <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=300&auto=format&fit=crop" alt="Americano" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="font-bold text-lg text-[#2c1a11] mb-1 mt-4">Classic Americano</h3>
+                    <p class="text-xs text-[#705a4e] mb-6">100% Natural premium Arabica pulled clean, 60ml shot</p>
+                    <div class="w-full flex justify-between items-center mt-auto">
+                        <div class="flex gap-2">
+                            <button class="w-8 h-8 rounded-full bg-white/80 hover:bg-white flex items-center justify-center text-xs text-[#2c1a11]"><i class="fa-solid fa-bag-shopping"></i></button>
+                            <button class="w-8 h-8 rounded-full bg-white/80 hover:bg-white flex items-center justify-center text-xs text-red-700"><i class="fa-solid fa-heart"></i></button>
+                        </div>
+                        <span class="bg-[#2c1a11] text-white text-xs font-bold px-4 py-1.5 rounded-full">$3.50</span>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="glass-card rounded-3xl p-6 shadow-xl flex flex-col items-center text-center pt-12 relative hover:-translate-y-2 transition-all duration-300 mt-20 md:mt-0">
+                    <div class="w-32 h-32 rounded-full overflow-hidden absolute -top-16 border-4 border-white/60 shadow-lg">
+                        <img src="https://images.unsplash.com/photo-1534778101976-62847782c213?q=80&w=300&auto=format&fit=crop" alt="Cappuccino" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="font-bold text-lg text-[#2c1a11] mb-1 mt-4">Velvet Cappuccino</h3>
+                    <p class="text-xs text-[#705a4e] mb-6">Equal parts microfoam texture and complex espresso base</p>
+                    <div class="w-full flex justify-between items-center mt-auto">
+                        <div class="flex gap-2">
+                            <button class="w-8 h-8 rounded-full bg-white/80 hover:bg-white flex items-center justify-center text-xs text-[#2c1a11]"><i class="fa-solid fa-bag-shopping"></i></button>
+                            <button class="w-8 h-8 rounded-full bg-white/80 hover:bg-white flex items-center justify-center text-xs text-red-700"><i class="fa-solid fa-heart"></i></button>
+                        </div>
+                        <span class="bg-[#2c1a11] text-white text-xs font-bold px-4 py-1.5 rounded-full">$2.50</span>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="glass-card rounded-3xl p-6 shadow-xl flex flex-col items-center text-center pt-12 relative hover:-translate-y-2 transition-all duration-300 mt-20 md:mt-0">
+                    <div class="w-32 h-32 rounded-full overflow-hidden absolute -top-16 border-4 border-white/60 shadow-lg">
+                        <img src="https://images.unsplash.com/photo-1576092768241-dec231879fc3?q=80&w=300&auto=format&fit=crop" alt="Matcha Tea" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="font-bold text-lg text-[#2c1a11] mb-1 mt-4">Ceremonial Matcha</h3>
+                    <p class="text-xs text-[#705a4e] mb-6">Authentic stone-ground Uji matcha whisked to perfection</p>
+                    <div class="w-full flex justify-between items-center mt-auto">
+                        <div class="flex gap-2">
+                            <button class="w-8 h-8 rounded-full bg-white/80 hover:bg-white flex items-center justify-center text-xs text-[#2c1a11]"><i class="fa-solid fa-bag-shopping"></i></button>
+                            <button class="w-8 h-8 rounded-full bg-white/80 hover:bg-white flex items-center justify-center text-xs text-red-700"><i class="fa-solid fa-heart"></i></button>
+                        </div>
+                        <span class="bg-[#2c1a11] text-white text-xs font-bold px-4 py-1.5 rounded-full">$4.25</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- SECTION 3: EXPANSIVE FULL MENU CATALOG -->
+        <section id="menu" class="mb-32 reveal">
+            <div class="text-center max-w-xl mx-auto mb-12">
+                <span class="text-xs uppercase tracking-widest font-bold text-amber-900 block mb-2">Freshly Brewed Daily</span>
+                <h2 class="text-4xl font-bold serif-font text-[#2c1a11]">Our Complete Menu</h2>
+            </div>
+
+            <!-- Menu Layout Grid Split -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Specialty Coffee -->
+                <div class="glass-card p-6 rounded-3xl shadow-sm space-y-6">
+                    <div class="flex items-center gap-3 border-b border-black/10 pb-3">
+                        <i class="fa-solid fa-mug-hot text-[#4a2c1b] text-xl"></i>
+                        <h3 class="font-bold text-lg text-[#2c1a11] serif-font">Specialty Coffee</h3>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h4 class="font-semibold text-sm text-[#2c1a11]">Classic Americano</h4>
+                                <p class="text-[11px] text-[#705a4e]">Double espresso shot diluted with hot water.</p>
+                            </div>
+                            <span class="font-bold text-xs text-amber-900">$3.50</span>
+                        </div>
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h4 class="font-semibold text-sm text-[#2c1a11]">Velvet Cappuccino</h4>
+                                <p class="text-[11px] text-[#705a4e]">Equal parts espresso, steamed milk, and foam texture.</p>
+                            </div>
+                            <span class="font-bold text-xs text-amber-900">$4.00</span>
+                        </div>
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h4 class="font-semibold text-sm text-[#2c1a11]">Salted Caramel Latte</h4>
+                                <p class="text-[11px] text-[#705a4e]">Sweet house-made syrup with sea salt flakes.</p>
+                            </div>
+                            <span class="font-bold text-xs text-amber-900">$4.75</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Premium Teas -->
+                <div class="glass-card p-6 rounded-3xl shadow-sm space-y-6">
+                    <div class="flex items-center gap-3 border-b border-black/10 pb-3">
+                        <i class="fa-solid fa-leaf text-[#4a2c1b] text-xl"></i>
+                        <h3 class="font-bold text-lg text-[#2c1a11] serif-font">Organic Premium Teas</h3>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h4 class="font-semibold text-sm text-[#2c1a11]">Ceremonial Matcha Latte</h4>
+                                <p class="text-[11px] text-[#705a4e]">Stone-ground Japanese matcha with creamy oat milk.</p>
+                            </div>
+                            <span class="font-bold text-xs text-amber-900">$4.50</span>
+                        </div>
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h4 class="font-semibold text-sm text-[#2c1a11]">Imperial Jasmine Green</h4>
+                                <p class="text-[11px] text-[#705a4e]">Fragrant, floral loose leaves steeped at 80°C.</p>
+                            </div>
+                            <span class="font-bold text-xs text-amber-900">$3.75</span>
+                        </div>
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h4 class="font-semibold text-sm text-[#2c1a11]">Spiced Masala Chai</h4>
+                                <p class="text-[11px] text-[#705a4e]">Black tea infused with cardamom, ginger, and cloves.</p>
+                            </div>
+                            <span class="font-bold text-xs text-amber-900">$4.25</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Artisan Pastries -->
+                <div class="glass-card p-6 rounded-3xl shadow-sm space-y-6">
+                    <div class="flex items-center gap-3 border-b border-black/10 pb-3">
+                        <i class="fa-solid fa-cookie-bite text-[#4a2c1b] text-xl"></i>
+                        <h3 class="font-bold text-lg text-[#2c1a11] serif-font">Artisan Pastries</h3>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h4 class="font-semibold text-sm text-[#2c1a11]">Butter Croissant</h4>
+                                <p class="text-[11px] text-[#705a4e]">Flaky, golden layered French pastry baked fresh daily.</p>
+                            </div>
+                            <span class="font-bold text-xs text-amber-900">$3.25</span>
+                        </div>
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h4 class="font-semibold text-sm text-[#2c1a11]">Almond Pain au Chocolat</h4>
+                                <p class="text-[11px] text-[#705a4e]">Filled with dark chocolate blocks and almond flakes.</p>
+                            </div>
+                            <span class="font-bold text-xs text-amber-900">$4.50</span>
+                        </div>
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h4 class="font-semibold text-sm text-[#2c1a11]">Avocado Sourdough Toast</h4>
+                                <p class="text-[11px] text-[#705a4e]">Chili flakes, pumpkin seeds, and clean olive oil dressings.</p>
+                            </div>
+                            <span class="font-bold text-xs text-amber-900">$6.50</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- SECTION 4: STORY & PHILOSOPHY BANNER -->
+        <section id="about" class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-32 reveal">
+            <div class="lg:col-span-6 space-y-5 order-2 lg:order-1">
+                <span class="text-xs uppercase tracking-widest font-bold text-amber-900 block">Our Philosophy</span>
+                <h2 class="text-4xl font-bold text-[#2c1a11] leading-tight serif-font">Grown items handled with professional patience.</h2>
+                <p class="text-xs text-[#614e43] leading-relaxed">
+                    At Tealogy Cafe, we treat brewing as a fine art science. Every temperature threshold, grind profile, and infusion second is measured precisely. Our partnerships with independent local estates ensure your morning cup supports fair trade agriculture.
+                </p>
+                <div class="pt-2">
+                    <button class="bg-[#4a2c1b] text-white text-xs font-medium px-6 py-3 rounded-full hover:bg-[#5f3b26] transition shadow-md">Read Our Whole Story</button>
+                </div>
+            </div>
+            
+            <div class="lg:col-span-6 flex justify-center relative order-1 lg:order-2">
+                <div class="absolute right-8 top-8 glass-card font-bold text-xs px-4 py-2 rounded-2xl shadow-xl z-10 text-[#2c1a11]"><i class="fa-solid fa-star text-amber-600 mr-1"></i> House Choice</div>
+                <div class="w-[320px] h-[320px] lg:w-[380px] lg:h-[380px] rounded-full overflow-hidden shadow-2xl relative border-8 border-white/20">
+                    <img src="https://images.unsplash.com/photo-1570968915860-54d5c301fc9f?q=80&w=500&auto=format&fit=crop" alt="Pour over perfection" class="w-full h-full object-cover">
+                </div>
+            </div>
+        </section>
+
+
+        <!-- SECTION 5: CAFE AMENITIES & EXPERIENCE -->
+        <section id="amenities" class="mb-32 reveal">
+            <div class="text-center max-w-xl mx-auto mb-16">
+                <span class="text-xs uppercase tracking-widest font-bold text-amber-900 block mb-2">Designed Spaces</span>
+                <h2 class="text-4xl font-bold serif-font text-[#2c1a11]">Beyond Just A Cup</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <div class="glass-card p-6 rounded-2xl shadow-md text-center space-y-3">
+                    <div class="w-12 h-12 rounded-xl bg-[#2c1a11] text-white flex items-center justify-center mx-auto text-lg"><i class="fa-solid fa-wifi"></i></div>
+                    <h4 class="font-bold text-[#2c1a11]">Gigabit Internet</h4>
+                    <p class="text-xs text-[#705a4e]">High-speed dedicated fiber nodes perfect for remote workers.</p>
+                </div>
+                <div class="glass-card p-6 rounded-2xl shadow-md text-center space-y-3">
+                    <div class="w-12 h-12 rounded-xl bg-[#2c1a11] text-white flex items-center justify-center mx-auto text-lg"><i class="fa-solid fa-couch"></i></div>
+                    <h4 class="font-bold text-[#2c1a11]">Cozy Lounges</h4>
+                    <p class="text-xs text-[#705a4e]">Ergonomic quiet corners and soft seating spaces for reading.</p>
+                </div>
+                <div class="glass-card p-6 rounded-2xl shadow-md text-center space-y-3">
+                    <div class="w-12 h-12 rounded-xl bg-[#2c1a11] text-white flex items-center justify-center mx-auto text-lg"><i class="fa-solid fa-seedling"></i></div>
+                    <h4 class="font-bold text-[#2c1a11]">Organic Only</h4>
+                    <p class="text-xs text-[#705a4e]">Zero artificial sweeteners or synthetic preservation mixes.</p>
+                </div>
+                <div class="glass-card p-6 rounded-2xl shadow-md text-center space-y-3">
+                    <div class="w-12 h-12 rounded-xl bg-[#2c1a11] text-white flex items-center justify-center mx-auto text-lg"><i class="fa-solid fa-mug-saucer"></i></div>
+                    <h4 class="font-bold text-[#2c1a11]">Roastery Tours</h4>
+                    <p class="text-xs text-[#705a4e]">Get lookups behind our bar workflows over monthly workshops.</p>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- SECTION 6: HORIZONTAL SCROLL TESTIMONIALS CAROUSEL -->
+        <section id="testimonials" class="mb-32 reveal">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-10">
+                <div>
+                    <span class="text-xs uppercase tracking-widest font-bold text-amber-900 block mb-2">Our Community</span>
+                    <h2 class="text-4xl font-bold serif-font text-[#2c1a11]">What Our Regulars Say</h2>
+                </div>
+                <div class="flex gap-2 mt-4 md:mt-0">
+                    <button onclick="document.getElementById('slider').scrollBy({left: -320, behavior: 'smooth'})" class="w-10 h-10 rounded-full bg-white/60 hover:bg-white text-[#2c1a11] transition flex items-center justify-center border border-white/40 shadow-sm"><i class="fa-solid fa-arrow-left text-xs"></i></button>
+                    <button onclick="document.getElementById('slider').scrollBy({left: 320, behavior: 'smooth'})" class="w-10 h-10 rounded-full bg-white/60 hover:bg-white text-[#2c1a11] transition flex items-center justify-center border border-white/40 shadow-sm"><i class="fa-solid fa-arrow-right text-xs"></i></button>
+                </div>
+            </div>
+            
+            <div id="slider" class="flex gap-6 overflow-x-auto pb-6 pt-2 snap-x snap-mandatory no-scrollbar">
+                <!-- Card 1 -->
+                <div class="glass-card p-8 rounded-3xl space-y-4 shadow-sm min-w-[300px] md:min-w-[400px] snap-start flex-shrink-0">
+                    <div class="flex items-center gap-1 text-amber-700 text-xs">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-xs italic text-[#5c4638] leading-relaxed">"Tealogy has changed my remote work habits completely. The network connection is lightning fast, and their Single Origin Pour-overs are simply unrivaled."</p>
+                    <div class="flex items-center gap-3 pt-2">
+                        <div class="w-10 h-10 rounded-full bg-stone-400 overflow-hidden"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=100&auto=format&fit=crop" class="w-full h-full object-cover"></div>
+                        <div><h5 class="font-bold text-xs text-[#2c1a11]">Sarah Jenkins</h5><p class="text-[10px] text-gray-500">Product Designer</p></div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="glass-card p-8 rounded-3xl space-y-4 shadow-sm min-w-[300px] md:min-w-[400px] snap-start flex-shrink-0">
+                    <div class="flex items-center gap-1 text-amber-700 text-xs">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-xs italic text-[#5c4638] leading-relaxed">"The atmosphere here is exceptionally peaceful. No loud industrial grinder sounds, perfect interior aesthetics, and their Ceremonial Matcha Latte is highly recommended!"</p>
+                    <div class="flex items-center gap-3 pt-2">
+                        <div class="w-10 h-10 rounded-full bg-stone-400 overflow-hidden"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=100&auto=format&fit=crop" class="w-full h-full object-cover"></div>
+                        <div><h5 class="font-bold text-xs text-[#2c1a11]">David K.</h5><p class="text-[10px] text-gray-500">Author & Regular</p></div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="glass-card p-8 rounded-3xl space-y-4 shadow-sm min-w-[300px] md:min-w-[400px] snap-start flex-shrink-0">
+                    <div class="flex items-center gap-1 text-amber-700 text-xs">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-xs italic text-[#5c4638] leading-relaxed">"The pastries are unbelievably fresh! You can tell they bake early in the morning. Combined with an iced Nitro Brew, it's my absolute favorite Saturday ritual."</p>
+                    <div class="flex items-center gap-3 pt-2">
+                        <div class="w-10 h-10 rounded-full bg-stone-400 overflow-hidden"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=100&auto=format&fit=crop" class="w-full h-full object-cover"></div>
+                        <div><h5 class="font-bold text-xs text-[#2c1a11]">Elena Rostova</h5><p class="text-[10px] text-gray-500">Local Food Critic</p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- SECTION 7: INTERACTIVE TABLE RESERVATION FORM -->
+        <section id="reserve" class="mb-32 reveal">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 glass-card rounded-[32px] overflow-hidden shadow-2xl p-8 lg:p-12 items-center">
+                <div class="lg:col-span-5 space-y-4">
+                    <span class="text-[10px] tracking-wider uppercase text-[#705a4e] font-semibold block mb-1">STAY A WHILE</span>
+                    <h2 class="text-4xl font-bold text-[#2c1a11] serif-font">Want to Reserve a Table?</h2>
+                    <p class="text-xs text-[#614e43] leading-relaxed">Ensure a comfortable working lounge slot or weekend seating instantly. Fill your details and our concierge team will lock in your premium table layout.</p>
+                </div>
+
+                <!-- Form Content -->
+                <form class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4" onsubmit="event.preventDefault(); alert('Reservation Confirmed! We look forward to seeing you at Tealogy Cafe.');">
+                    <div class="flex flex-col space-y-1">
+                        <label class="text-[10px] font-bold text-[#4a2c1b] uppercase">Your Name</label>
+                        <input type="text" placeholder="John Doe" required class="glass-input text-xs rounded-xl px-4 py-3">
+                    </div>
+                    <div class="flex flex-col space-y-1">
+                        <label class="text-[10px] font-bold text-[#4a2c1b] uppercase">Email Address</label>
+                        <input type="email" placeholder="john@example.com" required class="glass-input text-xs rounded-xl px-4 py-3">
+                    </div>
+                    <div class="flex flex-col space-y-1">
+                        <label class="text-[10px] font-bold text-[#4a2c1b] uppercase">Guests Count</label>
+                        <select class="glass-input text-xs rounded-xl px-4 py-3 text-stone-700">
+                            <option>1 Person</option>
+                            <option>2 People</option>
+                            <option>4 People</option>
+                        </select>
+                    </div>
+                    <div class="flex flex-col space-y-1">
+                        <label class="text-[10px] font-bold text-[#4a2c1b] uppercase">Date & Time</label>
+                        <input type="datetime-local" required class="glass-input text-xs rounded-xl px-4 py-3 text-stone-600">
+                    </div>
+                    <div class="sm:col-span-2 pt-2">
+                        <button type="submit" class="w-full bg-[#2c1a11] text-white font-medium py-3.5 rounded-xl text-xs tracking-wider uppercase hover:bg-black transition shadow-md">
+                            Confirm My Booking
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+
+        <!-- FOOTER INFRASTRUCTURE -->
+        <hr class="border-t border-black/10 mb-12">
+
+        <footer class="grid grid-cols-2 md:grid-cols-4 gap-8 text-xs text-[#5c4638] pb-12 reveal">
+            <div class="space-y-3">
+                <div class="flex flex-col">
+                    <span class="text-lg font-bold tracking-tight text-[#3d2516]">Tealogy <i class="fa-solid fa-mug-hot text-xs text-amber-900"></i></span>
+                    <span class="text-[9px] uppercase tracking-wider text-gray-500">Wake up to something special</span>
+                </div>
+                <p class="text-[10px] text-[#7a675b] leading-relaxed">© 2026 Tealogy Brands Inc. All rights reserved globally.</p>
+            </div>
+            <div class="space-y-2">
+                <h4 class="font-bold text-[#2c1a11] text-sm">Our Services</h4>
+                <a href="#menu" class="block hover:underline">Beverage Catalog</a>
+                <a href="#amenities" class="block hover:underline">Space Bookings</a>
+                <a href="#" class="block hover:underline">Terms of Services</a>
+            </div>
+            <div class="space-y-2">
+                <h4 class="font-bold text-[#2c1a11] text-sm">Our Company</h4>
+                <a href="#about" class="block hover:underline">Our Story</a>
+                <a href="#" class="block hover:underline">Sustainability Report</a>
+                <a href="#" class="block hover:underline">Careers Hub</a>
+            </div>
+            <div class="space-y-2">
+                <h4 class="font-bold text-[#2c1a11] text-sm">Location</h4>
+                <p class="leading-relaxed text-[#705a4e]">452 Artisan Boulevard,<br>Roastery Estate District</p>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- VANILLA JAVASCRIPT FOR DYNAMIC IMAGE COUPLING & SCROLL ANIMATIONS -->
+    <script>
+        // Image collection dictionary mapping keys to premium placeholder visual elements
+        const imagesDB = {
+            coffee: "https://images.unsplash.com/photo-1541167760496-1628856ab772?q=80&w=600&auto=format&fit=crop",
+            tea: "https://images.unsplash.com/photo-1536256263959-770b48d82b0a?q=80&w=600&auto=format&fit=crop",
+            cookie: "https://images.unsplash.com/photo-1499636136210-6f4ee915583e?q=80&w=600&auto=format&fit=crop",
+            breakfast: "https://images.unsplash.com/photo-1525351484163-7529414344d8?q=80&w=600&auto=format&fit=crop"
+        };
+
+        function changeHeroImage(type, element) {
+            const displayImg = document.getElementById('hero-showcase');
+            
+            // 1. Clear premium borders on tabs
+            document.querySelectorAll('.hero-tab').forEach(btn => {
+                btn.classList.remove('bg-white', 'border-[#4a2c1b]', 'scale-105', 'shadow-md');
+                btn.classList.add('bg-white/40', 'border-white/20', 'shadow-sm');
+            });
+
+            // 2. Highlight selected tab element
+            element.classList.remove('bg-white/40', 'border-white/20', 'shadow-sm');
+            element.classList.add('bg-white', 'border-2', 'border-[#4a2c1b]', 'scale-105', 'shadow-md');
+
+            // 3. Dynamic fade cross-over transition trigger
+            displayImg.style.opacity = '0';
+            setTimeout(() => {
+                displayImg.src = imagesDB[type];
+                displayImg.style.opacity = '1';
+            }, 300);
+        }
+
+        // Standard reveal calculation framework
+        function revealOnScroll() {
+            const reveals = document.querySelectorAll('.reveal');
+            reveals.forEach(reveal => {
+                const windowHeight = window.innerHeight;
+                const elementTop = reveal.getBoundingClientRect().top;
+                const elementVisible = 100;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveal.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('DOMContentLoaded', revealOnScroll);
+        window.addEventListener('scroll', revealOnScroll);
+    </script>
+</body>
+</html>
